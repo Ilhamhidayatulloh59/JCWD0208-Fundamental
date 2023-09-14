@@ -27,17 +27,19 @@ class Queue {
     async run() {
         let i = 0
         while (i < this.data.length) {
-            try {
-                const result = await this.#executeAsync(this.data[i], this.#randomSec())
-                console.log(result)
-            } catch (err) {
-                console.log(err)
-            }
+            // try {
+            //     const result = await this.#executeAsync(this.data[i], this.#randomSec())
+            //     console.log(result)
+            // } catch (err) {
+            //     console.log(err)
+            // }
+
+            await this.#executeAsync(this.data[i], this.#randomSec())
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err))
             i++
         }
     }
 }
 
-const queue = new Queue(["Queue 1", "Queue 2", "Queue 3", "Queue 4", "Queue 5", "Queue 6"])
-
-queue.run()
+module.exports = Queue
